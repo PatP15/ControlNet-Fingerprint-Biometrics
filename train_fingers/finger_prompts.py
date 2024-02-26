@@ -6,9 +6,9 @@ from NIST302_dicts import id_to_finger, technology_mapping
 # target/idX/roll_imgY.png
 
 # Symlink to the actual data directory
-source_dir = '../source/enhanced/'
-target_dir = '../target/'
-
+source_dir = './source/orient/'
+target_dir = './target/'
+prompt_filename = 'orient_prompts.json'
 
 def generate_prompt_from_filename(filename):
     """Generate a prompt based on the filename's metadata."""
@@ -29,7 +29,7 @@ def generate_prompt_from_filename(filename):
 
 
 
-with open('./prompts.json', 'w') as outfile:
+with open(prompt_filename, 'w') as outfile:
     # Iterate through each subdirectory in the source directory
     for subdir, dirs, files in os.walk(source_dir):
         # print(subdir)
