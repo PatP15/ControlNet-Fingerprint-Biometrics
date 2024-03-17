@@ -4,9 +4,11 @@ training/
 lightning_logs/
 image_log/
 
+failed_images.txt
 fine-tune-fingerprints/
 models/
 puma_envs/
+
 *.png
 *.pth
 *.pt

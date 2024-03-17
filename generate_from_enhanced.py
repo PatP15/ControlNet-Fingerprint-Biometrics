@@ -18,13 +18,28 @@ from cldm.model import create_model, load_state_dict
 from cldm.ddim_hacked import DDIMSampler
 
 
-# Assuming the functions from your snippet
 def load_model(model_path):
     model = create_model('./models/cldm_v15.yaml').cpu()
     model.load_state_dict(load_state_dict(model_path, location='cuda'))
     model = model.cuda()
     ddim_sampler = DDIMSampler(model)
     return model, ddim_sampler
+
+def generate_varied_prompt(selected_method):
+    # Define the options for each component of the prompt
+    finger_types = ['left index finger', 'right index finger', 'left thumb', 'right thumb', 'left middle finger', 'right middle finger', 'left ring finger', 'right ring finger', 'left pinky finger', 'right pinky finger']
+    scanner_types = ['Solid-state scanner', 'Optical scanner', 'Capacitive scanner', 'Touch-free scanner']
+    
+    # Randomly select one option from each list
+    selected_finger = random.choice(finger_types)
+    # selected_method = random.choice(creation_methods)
+    selected_scanner = random.choice(scanner_types)
+    
+    # Combine the selections into a prompt
+    prompt = f"a distorted single {selected_finger} by a {selected_method} from a {selected_scanner} surrounded by blank space"
+    
+    return prompt
+
 
 def process(model, ddim_sampler, input_image, prompt, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, guess_mode, strength, scale, seed, eta):
     with torch.no_grad():
@@ -67,9 +82,8 @@ def process(model, ddim_sampler, input_image, prompt, a_prompt, n_prompt, num_sa
         results = [x_samples[i] for i in range(num_samples)]
     return results
 
-# Assuming the rest of your definitions are provided earlier in the script
 
-def process_directory(input_dir, output_dir, model_path, prompt, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, guess_mode, strength, scale, seed, eta):
+def process_directory(input_dir, output_dir, model_path, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, guess_mode, strength, scale, seed, eta):
     model, ddim_sampler = load_model(model_path)
 
     if not os.path.exists(output_dir):
@@ -77,36 +91,58 @@ def process_directory(input_dir, output_dir, model_path, prompt, a_prompt, n_pro
 
     for filename in os.listdir(input_dir):
         if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
+            # Extract the fingerprint ID from the filename
+            fingerprint_id = filename.split('_')[0]
+            # Define the output directory for this fingerprint ID
+            fingerprint_output_dir = os.path.join(output_dir, fingerprint_id)
+
+
+            if os.path.exists(fingerprint_output_dir):
+                print(f"Skipping {fingerprint_id} as directory already exists.")
+                continue
+            
+            if not os.path.exists(fingerprint_output_dir):
+                os.makedirs(fingerprint_output_dir)
+                
             input_path = os.path.join(input_dir, filename)
-            output_path = os.path.join(output_dir, os.path.splitext(filename)[0] + "_processed.png")  # Change output filename to indicate processing
-            # Load image
-            input_image = cv2.imread(input_path)
-            input_image = cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB)  # Convert BGR (OpenCV format) to RGB
+            # The output filename now indicates the ID and the processing step
+            # output_filename = f"{fingerprint_id}_J_palm.png"
+            # output_path = os.path.join(fingerprint_output_dir, filename)
+            
 
-            # Process the image
-            results = process(model, ddim_sampler, input_image, prompt, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, guess_mode, strength, scale, seed, eta)
+            creation_methods = ['roll', 'palm', 'slap']
 
-            # Save the processed images
-            for i, result in enumerate(results):
-                result_path = os.path.splitext(output_path)[0] + f"_result_{i}.png"  # Generate unique filenames for each result
-                cv2.imwrite(result_path, cv2.cvtColor(result, cv2.COLOR_RGB2BGR))  # Convert RGB back to BGR for saving
+            # loop through the creation methods
+            # results = []
+            for i, selected_method in enumerate(creation_methods):
+                prompt = generate_varied_prompt(selected_method)
+                # print
+                # Load and process the image as before
+                input_image = cv2.imread(input_path)
+                input_image = cv2.cvtColor(input_image, cv2.COLOR_BGR2RGB)  # Convert BGR to RGB
+                
+                results = process(model, ddim_sampler, input_image, prompt, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, guess_mode, strength, scale, seed, eta)
+                #save the result
+                result_filename = f"{fingerprint_id}_{selected_method}_{i}.png"
+                result_path = os.path.join(fingerprint_output_dir, result_filename)
+                for result in results:
+                    cv2.imwrite(result_path, cv2.cvtColor(result, cv2.COLOR_RGB2BGR))
+                
 
-
-# Example usage - adjust these parameters as needed
 input_directory = './puma_envs/img_l2_feature_extractions/enhance'
-output_directory = './enhanced_control_generated'
+output_directory = './puma_envs/img_l2_feature_extractions/enhance_control_generated'
 # model_checkpoint_path = './train_fingers/checkpoints/last.ckpt'
 model_checkpoint_path = 'models/enhanced_model-epoch=07-val_loss=0.00.ckpt'
-prompt = "a distorted single left index fingerprint by a roll from a Solid-state scanner surrounded by blank space"
+# prompt = "a distorted single left index fingerprint by a roll from a Solid-state scanner surrounded by blank space"
 a_prompt = "A single finger print from a scanner surrounded by blank space, only finger, clear image centered, photorealistic"
-n_prompt = "multiple, mushed, low quality, cropped, worst quality, low quality"
-num_samples = 3
+n_prompt = "multiple, mushed, low quality, cropped, worst quality"
+num_samples = 1
 image_resolution = 512  # Assuming square images for simplicity
-ddim_steps = 50
+ddim_steps = 30
 guess_mode = False
 strength = 1.0
 scale = 7.5
 seed = -1  # Use -1 for random seeds
 eta = 0.0
 
-process_directory(input_directory, output_directory, model_checkpoint_path, prompt, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, guess_mode, strength, scale, seed, eta)
+process_directory(input_directory, output_directory, model_checkpoint_path, a_prompt, n_prompt, num_samples, image_resolution, ddim_steps, guess_mode, strength, scale, seed, eta)

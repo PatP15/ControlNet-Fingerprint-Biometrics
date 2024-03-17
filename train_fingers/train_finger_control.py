@@ -33,12 +33,6 @@ model.only_mid_control = only_mid_control
 train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
 val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
 
-# Model
-model = create_model('../models/cldm_v15.yaml').cpu()
-model.load_state_dict(load_state_dict(resume_path, location='cpu'))
-model.learning_rate = learning_rate
-model.sd_locked = sd_locked
-model.only_mid_control = only_mid_control
 
 # Logger
 logger = ImageLogger(batch_frequency=logger_freq)
