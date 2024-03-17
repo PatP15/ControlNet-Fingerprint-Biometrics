@@ -4,6 +4,10 @@ training/
 lightning_logs/
 image_log/
 
+fine-tune-fingerprints/
+models/
+puma_envs/
+*.png
 *.pth
 *.pt
 *.ckpt
