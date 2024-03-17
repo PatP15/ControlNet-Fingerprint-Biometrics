@@ -1,0 +1,272 @@
+{
+    "os": "Linux-4.15.0-197-generic-x86_64-with-glibc2.27",
+    "python": "3.10.0",
+    "heartbeatAt": "2024-03-03T05:50:09.164181",
+    "startedAt": "2024-03-03T05:50:08.660847",
+    "docker": null,
+    "cuda": "11.0.207",
+    "args": [],
+    "state": "running",
+    "program": "/home/pat/FingerprintMatching/synthetic_data_transfer_learning/finetune_printsgan.py",
+    "codePathLocal": "finetune_printsgan.py",
+    "codePath": "synthetic_data_transfer_learning/finetune_printsgan.py",
+    "git": {
+        "remote": "https://github.com/gabeguo/FingerprintMatching.git",
+        "commit": "0b41957c5bc71615dda5902a2e63c01dca0b3333"
+    },
+    "email": "pmp2149@columbia.edu",
+    "root": "/home/pat/FingerprintMatching",
+    "host": "columbia-ubuntu",
+    "username": "pat",
+    "executable": "/data/therealgabeguo/fingerprint_env/bin/python3",
+    "cpu_count": 20,
+    "cpu_count_logical": 40,
+    "cpu_freq": {
+        "current": 1218.92525,
+        "min": 1000.0,
+        "max": 3200.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1000.014,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.788,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.31,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.103,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.397,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.42,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.002,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1322.027,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.145,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.614,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.765,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.377,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.162,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.581,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 3107.384,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.209,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.212,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.285,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.941,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 2940.029,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.37,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.724,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.251,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.005,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.326,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.832,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.042,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1673.313,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.36,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.258,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.884,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.632,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.036,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1001.035,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 3080.615,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.43,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.672,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.759,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 1000.798,
+            "min": 1000.0,
+            "max": 3200.0
+        },
+        {
+            "current": 3083.798,
+            "min": 1000.0,
+            "max": 3200.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 218.50815963745117,
+            "used": 185.1071434020996
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 2080 Ti",
+    "gpu_count": 7,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11554717696
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11554717696
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11554717696
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11554717696
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11554717696
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11554717696
+        },
+        {
+            "name": "NVIDIA GeForce RTX 2080 Ti",
+            "memory_total": 11554717696
+        }
+    ],
+    "memory": {
+        "total": 250.57569122314453
+    }
+}
